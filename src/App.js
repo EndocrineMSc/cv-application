@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-filename-extension */
-import './App.css';
 import Timeline from './components/Timeline';
 import GeneralInfo from './components/GeneralInfo';
 

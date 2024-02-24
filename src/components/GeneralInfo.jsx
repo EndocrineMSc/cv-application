@@ -1,3 +1,4 @@
+import '../App.css';
 import { useState } from 'react';
 
 import Icon from '@mdi/react';
@@ -5,14 +6,22 @@ import { mdiSquareEditOutline } from '@mdi/js';
 
 function GeneralInfo() {
   return (
-    <>
-      <h1>
-        Lebenslauf
+    <div className="generalInfo">
+      <div className="generalInfoHeader">
+        <h1>Lebenslauf</h1>
         <Info name="Name" type="text" />
-      </h1>
-      <Info name="Email" type="email" />
-      <Info name="Telefon" type="tel" />
-    </>
+      </div>
+      <div className="otherInfoContainer">
+        <div className="otherInfo">
+          <b>E-Mail:</b>
+          <Info name="Email" type="email" />
+        </div>
+        <div className="otherInfo">
+          <b>Tel.:</b>
+          <Info name="Telefon" type="tel" />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -29,8 +38,19 @@ function Info({ name, type }) {
   }
 
   return (
-    <>
-      <label htmlFor={name}>{inputText}</label>
+    <div className="info">
+      <div className="noInput">
+        <label htmlFor={name}>{inputText}</label>
+        <button
+          className="editButton"
+          type="button"
+          id={name}
+          onClick={handleButtonClick}
+          aria-label="show input"
+        >
+          <Icon path={mdiSquareEditOutline} size={2} />
+        </button>
+      </div>
       {showInput
         ? (
           <input
@@ -40,15 +60,7 @@ function Info({ name, type }) {
             defaultValue={inputText}
           />
         ) : null}
-      <button
-        type="button"
-        id={name}
-        onClick={handleButtonClick}
-        aria-label="show input"
-      >
-        <Icon path={mdiSquareEditOutline} size={1} />
-      </button>
-    </>
+    </div>
   );
 }
 

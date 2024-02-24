@@ -1,3 +1,4 @@
+import '../App.css';
 import { useState } from 'react';
 import { eventHandler, TIMESPAN_EDITED } from '../eventhandler';
 
@@ -17,45 +18,47 @@ function TimelineEntryForm({
 
   return (
     <form className="formContainer">
-      <label htmlFor="formStartYear">
-        Arbeitsbeginn (Jahr)
-        <input
-          type="text"
-          id="formStartYear"
-          defaultValue={formStartYear}
-          onChange={(e) => setFormStartYear(e.target.value)}
-        />
-      </label>
+      <div className="labelContainer">
+        <label htmlFor="formStartYear">
+          Arbeitsbeginn (Jahr)
+          <input
+            type="text"
+            id="formStartYear"
+            defaultValue={formStartYear}
+            onChange={(e) => setFormStartYear(e.target.value)}
+          />
+        </label>
 
-      <label htmlFor="formEndYear">
-        Arbeitsende (Jahr/Leer)
-        <input
-          type="text"
-          id="formEndYear"
-          defaultValue={formEndYear}
-          onChange={(e) => setFormEndYear(e.target.value)}
-        />
-      </label>
+        <label htmlFor="formEndYear">
+          Arbeitsende (Jahr/Leer)
+          <input
+            type="text"
+            id="formEndYear"
+            defaultValue={formEndYear}
+            onChange={(e) => setFormEndYear(e.target.value)}
+          />
+        </label>
 
-      <label htmlFor="formInstitute">
-        Institut
-        <input
-          type="text"
-          id="formInstitute"
-          defaultValue={formInstitute}
-          onChange={(e) => setFormInstitute(e.target.value)}
-        />
-      </label>
+        <label htmlFor="formInstitute">
+          Institut
+          <input
+            type="text"
+            id="formInstitute"
+            defaultValue={formInstitute}
+            onChange={(e) => setFormInstitute(e.target.value)}
+          />
+        </label>
 
-      <label htmlFor="formTitle">
-        Bezeichnung
-        <input
-          type="text"
-          id="formTitle"
-          defaultValue={formTitle}
-          onChange={(e) => setFormTitle(e.target.value)}
-        />
-      </label>
+        <label htmlFor="formTitle">
+          Bezeichnung
+          <input
+            type="text"
+            id="formTitle"
+            defaultValue={formTitle}
+            onChange={(e) => setFormTitle(e.target.value)}
+          />
+        </label>
+      </div>
 
       <button
         type="button"

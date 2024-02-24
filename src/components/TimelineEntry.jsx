@@ -1,4 +1,7 @@
+import '../App.css';
 import { useState } from 'react';
+import Icon from '@mdi/react';
+import { mdiSquareEditOutline } from '@mdi/js';
 import TimelineEntryForm from './TimelineEntryForm';
 import { eventHandler, TIMESPAN_EDITED } from '../eventhandler';
 
@@ -14,6 +17,7 @@ function TimelineEntry({
   });
 
   const [firstRender, setFirstRender] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const editTimespan = (data) => {
     if (data.spanKey === spanKey) {
@@ -27,6 +31,10 @@ function TimelineEntry({
     }
   };
 
+  const handleButtonClick = () => {
+    setShowForm(!showForm);
+  };
+
   if (firstRender) {
     eventHandler.subscribe(TIMESPAN_EDITED, editTimespan);
     setFirstRender(false);
@@ -34,21 +42,31 @@ function TimelineEntry({
 
   return (
     <>
-      <h2 className="timespan">
-        {spanInfo.spanStartYear}
-        {' '}
-        -
-        {' '}
-        {spanInfo.spanEndYear}
-        {' '}
-        &middot;
-        {' '}
-        {spanInfo.spanInstitute}
-        {' '}
-        &middot;
-        {' '}
-        {spanInfo.spanTitle}
-      </h2>
+      <div className="entryHeader">
+        <h2 className="timespan">
+          {spanInfo.spanStartYear}
+          {' '}
+          -
+          {' '}
+          {spanInfo.spanEndYear}
+          {' '}
+          &middot;
+          {' '}
+          {spanInfo.spanInstitute}
+          {' '}
+          &middot;
+          {' '}
+          {spanInfo.spanTitle}
+        </h2>
+        <button
+          className="editButton"
+          type="button"
+          onClick={handleButtonClick}
+          aria-label="show input"
+        >
+          <Icon path={mdiSquareEditOutline} size={2} />
+        </button>
+      </div>
       <ul className="timespan">
         {spanInfo.spanDetails
           ? spanInfo.spanDetails.map((detail) => (
@@ -56,13 +74,18 @@ function TimelineEntry({
           ))
           : null}
       </ul>
-      <TimelineEntryForm
-        spanKey={spanKey}
-        startYear={spanInfo.spanStartYear}
-        endYear={spanInfo.spanEndYear}
-        institute={spanInfo.spanInstitute}
-        title={spanInfo.spanTitle}
-      />
+      {
+        showForm ? (
+          <TimelineEntryForm
+            spanKey={spanKey}
+            startYear={spanInfo.spanStartYear}
+            endYear={spanInfo.spanEndYear}
+            institute={spanInfo.spanInstitute}
+            title={spanInfo.spanTitle}
+          />
+        ) : null
+      }
+
     </>
   );
 }
