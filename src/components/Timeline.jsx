@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Timespan from './Timespan';
+import TimelineEntry from './TimelineEntry';
 import TimelineButton from './TimelineButton';
 
 function Timeline({ headerText }) {
-  const [timespans, setTimespan] = useState([]);
+  const [timespans, setTimespan] = useState([{
+    spanKey: uuidv4(), startYear: 2021, institute: 'Mustermann AG', title: 'Mustermacher', details: ['Anfertigen von Mustern'],
+  }]);
 
   const addTimespan = ({
     startYear, endYear, institute, title, details,
   }) => {
     setTimespan((prevExperiences) => [...prevExperiences, {
-      key: uuidv4(), startYear, endYear, institute, title, details,
+      spanKey: uuidv4(), startYear, endYear, institute, title, details,
     }]);
   };
 
@@ -18,8 +20,9 @@ function Timeline({ headerText }) {
     <div className={headerText}>
       <h1>{headerText}</h1>
       {timespans.map((timespan) => (
-        <Timespan
-          key={timespan.key}
+        <TimelineEntry
+          key={timespan.spanKey}
+          spanKey={timespan.spanKey}
           startYear={timespan.startYear}
           endYear={timespan.endYear}
           institute={timespan.institute}

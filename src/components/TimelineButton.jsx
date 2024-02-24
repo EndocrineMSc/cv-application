@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 function TimelineButton({ addTimespan }) {
   const handleButtonClick = () => {
     addTimespan({
@@ -5,7 +7,7 @@ function TimelineButton({ addTimespan }) {
       endYear: null,
       institute: 'Roche',
       title: 'Test Job',
-      details: ['a', 'b'],
+      details: [{ text: 'a', id: uuidv4() }, { text: 'b', id: uuidv4() }],
     });
   };
 
