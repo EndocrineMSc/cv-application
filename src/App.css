@@ -4,6 +4,7 @@
 /*#endregion*/
 
 /*region Section: General Info*/
+
 .generalInfo {
   display: flex;
   flex-direction: column;
@@ -61,6 +62,26 @@
 .otherInfo .info>.noInput {
   align-items: center;
 }
+
+/*#endregion*/
+
+/*#region Timeline*/
+
+.timelineHeader {
+  display: flex;
+  align-items: center;
+}
+
+.timelineHeader>button {
+  margin-left: 10px;
+  height: 30px;
+  width: 50px;
+}
+
+
+
+
+
 /*#endregion*/
 
 /*#region TimelineEntry + Form*/

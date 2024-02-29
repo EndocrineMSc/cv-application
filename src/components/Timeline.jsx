@@ -18,7 +18,10 @@ function Timeline({ headerText }) {
 
   return (
     <div className={headerText}>
-      <h1>{headerText}</h1>
+      <h1 className="timelineHeader">
+        {headerText}
+        <TimelineButton addTimespan={addTimespan} />
+      </h1>
       {timespans.map((timespan) => (
         <TimelineEntry
           key={timespan.spanKey}
@@ -30,7 +33,6 @@ function Timeline({ headerText }) {
           details={timespan.details}
         />
       ))}
-      <TimelineButton addTimespan={addTimespan} />
     </div>
   );
 }
